@@ -1,0 +1,15 @@
+.git
+.agents
+.codex
+
+build
+build-*
+
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+
+*.log
+*.tmp
+*.pid

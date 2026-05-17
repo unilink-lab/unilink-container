@@ -1,0 +1,17 @@
+.agents/
+.codex/
+
+# Local build output
+build/
+build-*/
+
+# Editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.pid
