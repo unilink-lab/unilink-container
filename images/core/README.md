@@ -12,7 +12,7 @@ without installing the C++ dependency stack on the host machine.
 | --- | --- | --- |
 | `UBUNTU_VERSION` | `24.04` | Ubuntu base image version |
 | `UNILINK_REPOSITORY` | `https://github.com/jwsung91/unilink.git` | Source repository used to build unilink |
-| `UNILINK_REF` | `v0.7.2` | unilink tag, branch, or commit to install |
+| `UNILINK_REF` | `v0.7.5` | unilink tag, branch, or commit to install |
 | `UNILINK_PREFIX` | `/opt/unilink` | Install prefix inside the image |
 
 ## Local Build
@@ -26,8 +26,8 @@ Build a specific unilink release:
 ```bash
 docker build \
   -f images/core/Dockerfile \
-  --build-arg UNILINK_REF=v0.7.2 \
-  -t unilink-core:0.7.2 \
+  --build-arg UNILINK_REF=v0.7.5 \
+  -t unilink-core:0.7.5 \
   .
 ```
 
