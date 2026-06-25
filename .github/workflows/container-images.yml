@@ -1,8 +1,13 @@
 name: Container Images
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   pull_request:
     paths:
+      - ".dockerignore"
       - ".github/workflows/container-images.yml"
       - "images/**"
       - "scripts/**"
@@ -11,6 +16,7 @@ on:
     branches: [main]
     tags: ["v*"]
     paths:
+      - ".dockerignore"
       - ".github/workflows/container-images.yml"
       - "images/**"
       - "scripts/**"
@@ -33,7 +39,8 @@ env:
 jobs:
   core:
     name: Build unilink-core
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
