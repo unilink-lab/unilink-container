@@ -26,14 +26,14 @@ on:
       unilink_ref:
         description: "unilink tag, branch, or commit to install"
         required: false
-        default: "v0.8.7"
+        default: "v0.8.8"
 
 permissions:
   contents: read
   packages: write
 
 env:
-  DEFAULT_UNILINK_REF: v0.8.7
+  DEFAULT_UNILINK_REF: v0.8.8
   IMAGE_NAME: ghcr.io/unilink-lab/unilink-core
 
 jobs:
