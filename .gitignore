@@ -15,3 +15,8 @@ Thumbs.db
 *.log
 *.tmp
 *.pid
+
+# agent-rules (local only)
+AGENTS.md
+CLAUDE.md
+GEMINI.md
