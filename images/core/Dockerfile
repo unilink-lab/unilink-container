@@ -3,7 +3,7 @@ FROM ubuntu:${UBUNTU_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG UNILINK_REPOSITORY=https://github.com/jwsung91/unilink.git
-ARG UNILINK_REF=v0.8.2
+ARG UNILINK_REF=v0.8.9
 ARG UNILINK_PREFIX=/opt/unilink
 
 LABEL org.opencontainers.image.title="unilink-core"
