@@ -1,12 +1,12 @@
-# unilink-containers
+# wirestead-containers
 
-Container images for building downstream C++ projects with the unilink core
+Container images for building downstream C++ projects with the Wirestead core
 library preinstalled.
 
 The initial image is intentionally small in scope:
 
 - one core image
-- unilink installed under `/opt/unilink`
+- Wirestead installed under `/opt/wirestead`
 - CMake package discovery through `CMAKE_PREFIX_PATH`
 - a smoke verification script that builds a minimal downstream CMake project
 
@@ -14,7 +14,7 @@ The initial image is intentionally small in scope:
 
 | Image | Purpose |
 | --- | --- |
-| `ghcr.io/unilink-lab/unilink-core` | C++ build environment with unilink core installed |
+| `ghcr.io/unilink-lab/wirestead-core` | C++ build environment with Wirestead core installed |
 
 ## Use
 
@@ -24,24 +24,24 @@ Run the image from a downstream project:
 docker run --rm -it \
   -v "$PWD:/workspace/app" \
   -w /workspace/app \
-  ghcr.io/unilink-lab/unilink-core:latest \
+  ghcr.io/unilink-lab/wirestead-core:latest \
   bash
 ```
 
 Configure a CMake consumer project inside the container:
 
 ```bash
-cmake -S . -B build -DCMAKE_PREFIX_PATH=/opt/unilink
+cmake -S . -B build -DCMAKE_PREFIX_PATH=/opt/wirestead
 cmake --build build
 ```
 
 The image also sets these environment variables:
 
 ```text
-UNILINK_ROOT=/opt/unilink
-CMAKE_PREFIX_PATH=/opt/unilink
-PKG_CONFIG_PATH=/opt/unilink/lib/pkgconfig
-LD_LIBRARY_PATH=/opt/unilink/lib
+WIRESTEAD_ROOT=/opt/wirestead
+CMAKE_PREFIX_PATH=/opt/wirestead
+PKG_CONFIG_PATH=/opt/wirestead/lib/pkgconfig
+LD_LIBRARY_PATH=/opt/wirestead/lib
 ```
 
 ## Build Locally
@@ -49,17 +49,17 @@ LD_LIBRARY_PATH=/opt/unilink/lib
 ```bash
 docker build \
   -f images/core/Dockerfile \
-  -t unilink-core:local \
+  -t wirestead-core:local \
   .
 ```
 
-Build a different unilink ref:
+Build a different Wirestead ref:
 
 ```bash
 docker build \
   -f images/core/Dockerfile \
-  --build-arg UNILINK_REF=v0.7.5 \
-  -t unilink-core:0.7.5 \
+  --build-arg WIRESTEAD_REF=v0.9.0-rc.2 \
+  -t wirestead-core:0.9.0-rc.2 \
   .
 ```
 
@@ -69,7 +69,7 @@ The core image runs the verification script during the Docker build. You can
 also run it manually:
 
 ```bash
-docker run --rm unilink-core:local verify-core-image
+docker run --rm wirestead-core:local verify-core-image
 ```
 
 ## Repository Layout
