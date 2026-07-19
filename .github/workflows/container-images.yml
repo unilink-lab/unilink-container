@@ -26,15 +26,15 @@ on:
       wirestead_ref:
         description: "Wirestead tag, branch, or commit to install"
         required: false
-        default: "v0.9.0-rc.2"
+        default: "v0.9.0"
 
 permissions:
   contents: read
   packages: write
 
 env:
-  DEFAULT_WIRESTEAD_REF: v0.9.0-rc.2
-  IMAGE_NAME: ghcr.io/unilink-lab/wirestead-core
+  DEFAULT_WIRESTEAD_REF: v0.9.0
+  IMAGE_NAME: ghcr.io/wirestead/wirestead-core
 
 jobs:
   core:

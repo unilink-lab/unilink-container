@@ -14,7 +14,7 @@ The initial image is intentionally small in scope:
 
 | Image | Purpose |
 | --- | --- |
-| `ghcr.io/unilink-lab/wirestead-core` | C++ build environment with Wirestead core installed |
+| `ghcr.io/wirestead/wirestead-core` | C++ build environment with Wirestead core installed |
 
 ## Use
 
@@ -24,7 +24,7 @@ Run the image from a downstream project:
 docker run --rm -it \
   -v "$PWD:/workspace/app" \
   -w /workspace/app \
-  ghcr.io/unilink-lab/wirestead-core:latest \
+  ghcr.io/wirestead/wirestead-core:latest \
   bash
 ```
 
@@ -58,8 +58,8 @@ Build a different Wirestead ref:
 ```bash
 docker build \
   -f images/core/Dockerfile \
-  --build-arg WIRESTEAD_REF=v0.9.0-rc.2 \
-  -t wirestead-core:0.9.0-rc.2 \
+  --build-arg WIRESTEAD_REF=v0.9.0 \
+  -t wirestead-core:0.9.0 \
   .
 ```
 

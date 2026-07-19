@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-wirestead_root="${WIRESTEAD_ROOT:-${UNILINK_ROOT:-/opt/wirestead}}"
+wirestead_root="${WIRESTEAD_ROOT:-/opt/wirestead}"
 workdir="$(mktemp -d)"
 trap 'rm -rf "${workdir}"' EXIT
 

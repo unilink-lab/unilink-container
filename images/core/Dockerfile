@@ -3,12 +3,12 @@ FROM ubuntu:${UBUNTU_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG WIRESTEAD_REPOSITORY=https://github.com/wirestead/wirestead.git
-ARG WIRESTEAD_REF=v0.9.0-rc.2
+ARG WIRESTEAD_REF=v0.9.0
 ARG WIRESTEAD_PREFIX=/opt/wirestead
 
 LABEL org.opencontainers.image.title="wirestead-core"
 LABEL org.opencontainers.image.description="C++ build environment with Wirestead core installed"
-LABEL org.opencontainers.image.source="https://github.com/unilink-lab/unilink-containers"
+LABEL org.opencontainers.image.source="https://github.com/wirestead/unilink-container"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
