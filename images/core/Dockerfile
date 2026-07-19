@@ -2,13 +2,13 @@ ARG UBUNTU_VERSION=24.04
 FROM ubuntu:${UBUNTU_VERSION}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG UNILINK_REPOSITORY=https://github.com/jwsung91/unilink.git
-ARG UNILINK_REF=v0.8.2
-ARG UNILINK_PREFIX=/opt/unilink
+ARG WIRESTEAD_REPOSITORY=https://github.com/wirestead/wirestead.git
+ARG WIRESTEAD_REF=v0.9.0
+ARG WIRESTEAD_PREFIX=/opt/wirestead
 
-LABEL org.opencontainers.image.title="unilink-core"
-LABEL org.opencontainers.image.description="C++ build environment with unilink core installed"
-LABEL org.opencontainers.image.source="https://github.com/unilink-lab/unilink-containers"
+LABEL org.opencontainers.image.title="wirestead-core"
+LABEL org.opencontainers.image.description="C++ build environment with Wirestead core installed"
+LABEL org.opencontainers.image.source="https://github.com/wirestead/unilink-container"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -29,33 +29,33 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     zip \
   && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 --branch "${UNILINK_REF}" "${UNILINK_REPOSITORY}" /tmp/unilink-src \
+RUN git clone --depth 1 --branch "${WIRESTEAD_REF}" "${WIRESTEAD_REPOSITORY}" /tmp/wirestead-src \
   || ( \
-    git clone "${UNILINK_REPOSITORY}" /tmp/unilink-src \
-    && git -C /tmp/unilink-src fetch --depth 1 origin "${UNILINK_REF}" \
-    && git -C /tmp/unilink-src checkout FETCH_HEAD \
+    git clone "${WIRESTEAD_REPOSITORY}" /tmp/wirestead-src \
+    && git -C /tmp/wirestead-src fetch --depth 1 origin "${WIRESTEAD_REF}" \
+    && git -C /tmp/wirestead-src checkout FETCH_HEAD \
   )
 
-RUN cmake -S /tmp/unilink-src -B /tmp/unilink-build -G Ninja \
+RUN cmake -S /tmp/wirestead-src -B /tmp/wirestead-build -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX="${UNILINK_PREFIX}" \
-    -DUNILINK_BUILD_EXAMPLES=OFF \
-    -DUNILINK_BUILD_TESTS=OFF \
-    -DUNILINK_BUILD_DOCS=OFF \
-    -DUNILINK_ENABLE_INSTALL=ON \
-    -DUNILINK_ENABLE_PKGCONFIG=ON \
-    -DUNILINK_ENABLE_EXPORT_HEADER=ON \
+    -DCMAKE_INSTALL_PREFIX="${WIRESTEAD_PREFIX}" \
+    -DWIRESTEAD_BUILD_EXAMPLES=OFF \
+    -DWIRESTEAD_BUILD_TESTS=OFF \
+    -DWIRESTEAD_BUILD_DOCS=OFF \
+    -DWIRESTEAD_ENABLE_INSTALL=ON \
+    -DWIRESTEAD_ENABLE_PKGCONFIG=ON \
+    -DWIRESTEAD_ENABLE_EXPORT_HEADER=ON \
     -DBUILD_PYTHON_BINDINGS=OFF \
-  && cmake --build /tmp/unilink-build --parallel \
-  && cmake --install /tmp/unilink-build \
-  && rm -rf /tmp/unilink-src /tmp/unilink-build
+  && cmake --build /tmp/wirestead-build --parallel \
+  && cmake --install /tmp/wirestead-build \
+  && rm -rf /tmp/wirestead-src /tmp/wirestead-build
 
-ENV UNILINK_ROOT="${UNILINK_PREFIX}"
-ENV CMAKE_PREFIX_PATH="${UNILINK_PREFIX}"
-ENV PKG_CONFIG_PATH="${UNILINK_PREFIX}/lib/pkgconfig"
-ENV LD_LIBRARY_PATH="${UNILINK_PREFIX}/lib"
+ENV WIRESTEAD_ROOT="${WIRESTEAD_PREFIX}"
+ENV CMAKE_PREFIX_PATH="${WIRESTEAD_PREFIX}"
+ENV PKG_CONFIG_PATH="${WIRESTEAD_PREFIX}/lib/pkgconfig"
+ENV LD_LIBRARY_PATH="${WIRESTEAD_PREFIX}/lib"
 
-RUN echo "${UNILINK_PREFIX}/lib" > /etc/ld.so.conf.d/unilink.conf && ldconfig
+RUN echo "${WIRESTEAD_PREFIX}/lib" > /etc/ld.so.conf.d/wirestead.conf && ldconfig
 
 COPY scripts/verify-core-image.sh /usr/local/bin/verify-core-image
 RUN chmod +x /usr/local/bin/verify-core-image && verify-core-image

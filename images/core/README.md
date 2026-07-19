@@ -1,9 +1,9 @@
-# unilink-core Image
+# wirestead-core Image
 
-`unilink-core` provides a C++ build environment with the unilink core library
-installed under `/opt/unilink`.
+`wirestead-core` provides a C++ build environment with the Wirestead core
+library installed under `/opt/wirestead`.
 
-It is intended for downstream projects that want to build against unilink
+It is intended for downstream projects that want to build against Wirestead
 without installing the C++ dependency stack on the host machine.
 
 ## Build Arguments
@@ -11,31 +11,31 @@ without installing the C++ dependency stack on the host machine.
 | Argument | Default | Description |
 | --- | --- | --- |
 | `UBUNTU_VERSION` | `24.04` | Ubuntu base image version |
-| `UNILINK_REPOSITORY` | `https://github.com/jwsung91/unilink.git` | Source repository used to build unilink |
-| `UNILINK_REF` | `v0.7.5` | unilink tag, branch, or commit to install |
-| `UNILINK_PREFIX` | `/opt/unilink` | Install prefix inside the image |
+| `WIRESTEAD_REPOSITORY` | `https://github.com/wirestead/wirestead.git` | Source repository used to build Wirestead |
+| `WIRESTEAD_REF` | `v0.9.0` | Wirestead tag, branch, or commit to install |
+| `WIRESTEAD_PREFIX` | `/opt/wirestead` | Install prefix inside the image |
 
 ## Local Build
 
 ```bash
-docker build -f images/core/Dockerfile -t unilink-core:local .
+docker build -f images/core/Dockerfile -t wirestead-core:local .
 ```
 
-Build a specific unilink release:
+Build a specific Wirestead release:
 
 ```bash
 docker build \
   -f images/core/Dockerfile \
-  --build-arg UNILINK_REF=v0.7.5 \
-  -t unilink-core:0.7.5 \
+  --build-arg WIRESTEAD_REF=v0.9.0 \
+  -t wirestead-core:0.9.0 \
   .
 ```
 
 ## Verify
 
 The image includes `verify-core-image`, which builds and runs a minimal CMake
-consumer project using `find_package(unilink CONFIG REQUIRED)`.
+consumer project using `find_package(wirestead CONFIG REQUIRED)`.
 
 ```bash
-docker run --rm unilink-core:local verify-core-image
+docker run --rm wirestead-core:local verify-core-image
 ```

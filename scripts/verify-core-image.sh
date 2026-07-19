@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-unilink_root="${UNILINK_ROOT:-/opt/unilink}"
+wirestead_root="${WIRESTEAD_ROOT:-/opt/wirestead}"
 workdir="$(mktemp -d)"
 trap 'rm -rf "${workdir}"' EXIT
 
 cat > "${workdir}/CMakeLists.txt" <<'EOF'
 cmake_minimum_required(VERSION 3.28)
 
-project(unilink_core_image_smoke LANGUAGES CXX)
+project(wirestead_core_image_smoke LANGUAGES CXX)
 
-find_package(unilink CONFIG REQUIRED)
+find_package(wirestead CONFIG REQUIRED)
 
 add_executable(smoke main.cpp)
-target_link_libraries(smoke PRIVATE unilink::unilink)
+target_link_libraries(smoke PRIVATE wirestead::wirestead)
 target_compile_features(smoke PRIVATE cxx_std_20)
 EOF
 
 cat > "${workdir}/main.cpp" <<'EOF'
-#include <unilink/unilink.hpp>
+#include <wirestead/wirestead.hpp>
 
 int main() {
   return 0;
@@ -26,6 +26,6 @@ int main() {
 EOF
 
 cmake -S "${workdir}" -B "${workdir}/build" -G Ninja \
-  -DCMAKE_PREFIX_PATH="${unilink_root}"
+  -DCMAKE_PREFIX_PATH="${wirestead_root}"
 cmake --build "${workdir}/build" --parallel
 "${workdir}/build/smoke"
