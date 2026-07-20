@@ -8,7 +8,7 @@ ARG WIRESTEAD_PREFIX=/opt/wirestead
 
 LABEL org.opencontainers.image.title="wirestead-core"
 LABEL org.opencontainers.image.description="C++ build environment with Wirestead core installed"
-LABEL org.opencontainers.image.source="https://github.com/wirestead/unilink-container"
+LABEL org.opencontainers.image.source="https://github.com/wirestead/wirestead-container"
 LABEL org.opencontainers.image.licenses="Apache-2.0"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
