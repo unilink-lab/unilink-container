@@ -22,8 +22,8 @@
 ## Validation
 <!-- Check the items that apply, and note any skipped checks in Additional Context. -->
 - [ ] I have run `git diff --check`.
-- [ ] I have built the core image locally: `docker build -f images/core/Dockerfile -t unilink-core:local .`
-- [ ] I have run the image smoke test: `docker run --rm unilink-core:local verify-core-image`
+- [ ] I have built the core image locally: `docker build -f images/core/Dockerfile -t wirestead-core:local .`
+- [ ] I have run the image smoke test: `docker run --rm wirestead-core:local verify-core-image`
 - [ ] I have confirmed the Container Images workflow passes.
 - [ ] I have updated documentation to reflect the change, if applicable.
 
